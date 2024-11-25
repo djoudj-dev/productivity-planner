@@ -1,4 +1,12 @@
 {
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=827846
-  "recommendations": ["angular.ng-template"]
+  "recommendations": [
+    "Angular.ng-template", // Angular Language Service
+    "dbaeumer.vscode-eslint", // ESLint
+    "esbenp.prettier-vscode", // Prettier - Code formatter
+    "SonarSource.sonarlint-vscode", // SonarLint
+    "kisstkondoros.vscode-codemetrics", // CodeMetrics
+    "eamodio.gitlens", // GitLens
+    "Mikael.Angular-BeastCode", // Angular Snippets
+    "angular-schematics.angular-schematics" // Angular Schematics
+  ]
 }

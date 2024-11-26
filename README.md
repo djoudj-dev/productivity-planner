@@ -4,7 +4,8 @@ A webapp for personal productivity using Pomodoro technique.
 
 ## Getting started
 
-Run ‘npm install‘ Run ‘npm start‘
+- Run ‘npm install‘ 
+- Run ‘npm start‘
 
 ## DoD
 

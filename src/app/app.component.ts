@@ -8,6 +8,7 @@ import { environment } from '../environments/environment';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  title = 'productivity-planner';
   isProductionEnvironment = environment.production;
   firebaseProjectId = environment.firebaseConfig.projectId;
 }

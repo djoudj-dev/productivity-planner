@@ -47,7 +47,7 @@ jobs:
       # Set environment variables
       - name: Create environment file
         run: /
-          mkdir environment
+          mkdir -p environment
           echo " Creating production environment file..."
           echo "${{ secrets.FIREBASE_CONFIG }}" >> environment/environment.ts
 

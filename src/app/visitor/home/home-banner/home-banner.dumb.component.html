@@ -1,0 +1,16 @@
+<div
+  class="container-fluid vh-100 d-flex align-items-center justify-content-center bg-light"
+>
+  <div class="text-center">
+    <h1 class="display-4 mb-4" data-testid="title">{{ title() }}</h1>
+    <p class="lead mb-4" data-testid="description">{{ description() }}</p>
+    <button
+      type="button"
+      class="btn btn-primary btn-lg"
+      data-testid="button"
+      (click)="clicked.emit()"
+    >
+      {{ button() }}
+    </button>
+  </div>
+</div>

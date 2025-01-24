@@ -4,11 +4,12 @@ import {
   input,
   output,
 } from '@angular/core';
+import { HomeFeatureCardListDumbComponent } from '../home-feature-card-list/home-feature-card-list.dumb.component';
 
 @Component({
   selector: 'app-home-banner',
   standalone: true,
-  imports: [],
+  imports: [HomeFeatureCardListDumbComponent],
   templateUrl: './home-banner.dumb.component.html',
   styleUrl: './home-banner.dumb.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

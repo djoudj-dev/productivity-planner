@@ -1,1 +1,8 @@
-<p>home works!</p>
+<app-home-banner
+  title="La productivité au XXIème siècle"
+  description="Atteignez vos objectifs de productivité avec notre application"
+  button="Terminer vos journées en Héro"
+  (clicked)="onBannerClicked()"
+/>
+
+<app-home-feature-card-list [featureCardList]="featureCardList()" />

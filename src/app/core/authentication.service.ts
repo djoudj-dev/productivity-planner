@@ -34,7 +34,7 @@ export class AuthenticationService {
 
   register(
     email: string,
-    password: string
+    password: string,
   ): Observable<FirebaseResponseSignup> {
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseConfig.apiKey}`;
     const body = {
@@ -55,7 +55,7 @@ export class AuthenticationService {
   save(
     email: string,
     userId: string,
-    bearerToken: string
+    bearerToken: string,
   ): Observable<unknown> {
     const baseUrl = `https://firestore.googleapis.com/v1/projects/${environment.firebaseConfig.projectId}/databases/(default)/documents`;
     const userFirestoreCollectionId = 'users';

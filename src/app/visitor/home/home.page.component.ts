@@ -3,27 +3,27 @@ import { HomeBannerDumbComponent } from './home-banner/home-banner.dumb.componen
 import { HomeFeatureCardListDumbComponent } from './home-feature-card-list/home-feature-card-list.dumb.component';
 
 @Component({
-    selector: 'app-home',
-    imports: [HomeBannerDumbComponent, HomeFeatureCardListDumbComponent],
-    templateUrl: './home.page.component.html',
-    styleUrl: './home.page.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-home',
+  imports: [HomeBannerDumbComponent, HomeFeatureCardListDumbComponent],
+  templateUrl: './home.page.component.html',
+  styleUrl: './home.page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePageComponent {
   featureCardList = signal([
     {
       name: 'Planifier sa semaine',
-      icon: 'calendar',
+      icon: 'bi-calendar',
       description: 'Visibilité sur les 7 prochains jours',
     },
     {
       name: 'Atteindre ses objectifs',
-      icon: 'target',
+      icon: 'bi-bullseye',
       description: 'Suivi de ses objectifs',
     },
     {
       name: 'Analyser sa productivité',
-      icon: 'chart-line',
+      icon: 'bi-graph-up',
       description: 'Suivi de votre productivité et de vos objectif',
     },
   ]);

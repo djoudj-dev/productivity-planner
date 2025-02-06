@@ -3,12 +3,11 @@ import { HomeBannerDumbComponent } from './home-banner/home-banner.dumb.componen
 import { HomeFeatureCardListDumbComponent } from './home-feature-card-list/home-feature-card-list.dumb.component';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [HomeBannerDumbComponent, HomeFeatureCardListDumbComponent],
-  templateUrl: './home.page.component.html',
-  styleUrl: './home.page.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-home',
+    imports: [HomeBannerDumbComponent, HomeFeatureCardListDumbComponent],
+    templateUrl: './home.page.component.html',
+    styleUrl: './home.page.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePageComponent {
   featureCardList = signal([

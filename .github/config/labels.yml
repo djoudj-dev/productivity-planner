@@ -1,0 +1,51 @@
+- name: "Chore"
+  color: "6c757d"
+  description: "Maintenance ou tâches techniques"
+
+- name: "Feature"
+  color: "198754"
+  description: "Nouvelle fonctionnalité ou amélioration"
+
+- name: "Fix"
+  color: "dc3545"
+  description: "Correction de bugs ou d'erreurs"
+
+- name: "Hotfix"
+  color: "b22222"
+  description: "Corrections urgentes en production"
+
+- name: "Refactor"
+  color: "6f42c1"
+  description: "Réorganisation ou optimisation du code"
+
+- name: "Release"
+  color: "0d6efd"
+  description: "Livraison d'une version stable"
+
+- name: "Update"
+  color: "ffc107"
+  description: "Mises à jour ou modifications générales"
+
+- name: "Security"
+  color: "ff0000"
+  description: "Correctif ou amélioration de la sécurité"
+
+- name: "Docs"
+  color: "17a2b8"
+  description: "Mise à jour ou ajout de documentation"
+
+- name: "Perf"
+  color: "ff4500"
+  description: "Amélioration des performances du code"
+
+- name: "Dependencies"
+  color: "8b4513"
+  description: "Mise à jour ou suppression de dépendances"
+
+- name: "Test"
+  color: "32cd32"
+  description: "Ajout ou modification de tests unitaires/e2e"
+
+- name: "Revert"
+  color: "b22222"
+  description: "Annulation d'un changement précédent"

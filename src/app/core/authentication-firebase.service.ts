@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
 import {
   AuthenticationService,
   LoginResponse,
   RegisterResponse,
 } from './authentication.service';
+import { environment } from '../../environments/environment';
 
 /**
  * Represents the payload of the response received when registering a new user in Firebase.

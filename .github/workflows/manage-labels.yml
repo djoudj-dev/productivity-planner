@@ -3,7 +3,7 @@ name: "Synchronisation des Labels"
 on:
   push:
     branches:
-      - main
+      - master
   workflow_dispatch:
 
 jobs:

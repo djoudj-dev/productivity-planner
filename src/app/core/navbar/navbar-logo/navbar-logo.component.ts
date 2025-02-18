@@ -4,5 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-navbar-logo',
   imports: [],
   templateUrl: './navbar-logo.component.svg',
+  styleUrl: './navbar-logo.component.scss',
 })
 export class NavbarLogoComponent {}

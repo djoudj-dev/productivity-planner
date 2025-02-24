@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { AuthenticationService } from '../../core/authentication.service';
 import { SignupPageComponent } from './signup.page.component';
 
 describe('SignupPageComponent', () => {
@@ -9,6 +10,14 @@ describe('SignupPageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SignupPageComponent],
+      providers: [
+        {
+          provide: AuthenticationService,
+          useValue: {
+            // Ajoutez ici les méthodes mock dont vous avez besoin
+          },
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SignupPageComponent);

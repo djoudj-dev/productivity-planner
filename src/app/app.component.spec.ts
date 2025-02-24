@@ -1,12 +1,21 @@
 import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { appConfig } from './app.config';
+import { AuthenticationService } from './core/authentication.service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
-      providers: appConfig.providers,
+      imports: [AppComponent, RouterTestingModule.withRoutes([])],
+      providers: [
+        {
+          provide: AuthenticationService,
+          useValue: {
+            register: jest.fn(),
+            login: jest.fn(),
+          },
+        },
+      ],
     }).compileComponents();
   });
 

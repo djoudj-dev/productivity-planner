@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { appConfig } from '../../app.config';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AuthenticationService } from '../authentication.service';
 import { NavbarSmartComponent } from './navbar.smart.component';
 
 describe('NavbarSmartComponent', () => {
@@ -8,8 +9,16 @@ describe('NavbarSmartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NavbarSmartComponent],
-      providers: appConfig.providers,
+      imports: [NavbarSmartComponent, RouterTestingModule],
+      providers: [
+        {
+          provide: AuthenticationService,
+          useValue: {
+            register: jest.fn(),
+            login: jest.fn(),
+          },
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NavbarSmartComponent);

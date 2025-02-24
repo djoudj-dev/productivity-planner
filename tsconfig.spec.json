@@ -8,5 +8,9 @@
     "esModuleInterop": true,
     "emitDecoratorMetadata": true
   },
-  "include": ["src/**/*.spec.ts", "src/**/*.d.ts"]
+  "include": [
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts",
+    "src/environments/environment.ts"
+  ]
 }

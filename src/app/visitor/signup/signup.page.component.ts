@@ -17,7 +17,5 @@ export class SignupPageComponent {
     () => this.password() === this.confirmPassword(),
   );
 
-  onSubmit() {
-    console.log('Form submitted');
-  }
+  onSubmit() {}
 }

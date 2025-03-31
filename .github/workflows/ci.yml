@@ -31,7 +31,7 @@ jobs:
           version: latest
           run_install: false
 
-      # Installation des dépendances avec pnpm
+      # Installation des dépendances avec pnpm.
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 

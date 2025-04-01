@@ -36,7 +36,7 @@ export class AuthenticationFirebaseService implements AuthenticationService {
   readonly #http = inject(HttpClient);
 
   register(email: string, password: string): Observable<RegisterResponse> {
-    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebase.apiKey}`;
+    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseConfig.apiKey}`;
     const body = {
       email,
       password,
@@ -53,7 +53,7 @@ export class AuthenticationFirebaseService implements AuthenticationService {
   }
 
   login(email: string, password: string): Observable<LoginResponse> {
-    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebase.apiKey}`;
+    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseConfig.apiKey}`;
     const body = { email, password, returnSecureToken: true };
 
     return this.#http.post<FirebaseResponseSignin>(url, body).pipe(

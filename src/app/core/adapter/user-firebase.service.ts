@@ -11,7 +11,7 @@ export class UserFirebaseService implements UserService {
   readonly #FIRESTORE_URL =
     'https://firestore.googleapis.com/v1/projects/${environment.firebase.projectId}/databases/(default)/documents';
   readonly #USER_COLLECTION_ID = 'users';
-  readonly #FIREBASE_API_KEY = environment.firebase.apiKey;
+  readonly #FIREBASE_API_KEY = environment.firebaseConfig.apiKey;
   readonly #USER_COLLECTION_URL = `${this.#FIRESTORE_URL}/${this.#USER_COLLECTION_ID}?key=${this.#FIREBASE_API_KEY}&documentId=`;
 
   create(user: User, bearerToken: string): Observable<void> {

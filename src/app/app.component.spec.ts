@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { AppComponent } from './app.component';
-import { AuthenticationService } from './core/authentication.service';
+import { AuthenticationService } from './core/port/authentication.service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {

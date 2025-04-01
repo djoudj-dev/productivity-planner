@@ -23,6 +23,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          registry-url: 'https://registry.npmjs.org/'
 
       # Installation de pnpm
       - name: Install pnpm
@@ -34,22 +35,32 @@ jobs:
       # Installation des dépendances avec pnpm.
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # Audit de sécurité
       - name: Audit
         run: pnpm audit --audit-level=high || true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # Vérification de la signature des audits
       - name: Audit Signature
         run: pnpm audit signatures || true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # Linter
       - name: Lint
         run: pnpm lint
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # Tests
       - name: Test
         run: pnpm run test
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # Set environment variables
       - name: Create environment file
@@ -61,3 +72,5 @@ jobs:
       # Build
       - name: Build
         run: pnpm build
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

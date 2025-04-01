@@ -24,32 +24,21 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      # Installation de pnpm
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
-          run_install: false
-
-      # Installation des dépendances avec pnpm.
+      # Installation des dépendances avec npm
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
       # Audit de sécurité
       - name: Audit
-        run: pnpm audit --audit-level=high || true
-
-      # Vérification de la signature des audits
-      - name: Audit Signature
-        run: pnpm audit signatures || true
+        run: npm audit --audit-level=high || true
 
       # Linter
       - name: Lint
-        run: pnpm lint
+        run: npm run lint
 
       # Tests
       - name: Test
-        run: pnpm run test
+        run: npm run test
 
       # Set environment variables
       - name: Create environment file
@@ -60,4 +49,4 @@ jobs:
 
       # Build
       - name: Build
-        run: pnpm build
+        run: npm run build

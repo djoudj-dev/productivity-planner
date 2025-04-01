@@ -4,6 +4,7 @@ import { NavbarLogoComponent } from './navbar-logo/navbar-logo.component';
 
 @Component({
   selector: 'app-navbar',
+  standalone: true,
   imports: [NavbarLogoComponent, RouterLink],
   templateUrl: './navbar.smart.component.html',
   styleUrl: './navbar.smart.component.scss',

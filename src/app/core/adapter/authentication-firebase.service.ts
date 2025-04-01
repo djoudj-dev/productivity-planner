@@ -6,7 +6,7 @@ import {
   LoginResponse,
   RegisterResponse,
 } from '../port/authentication.service';
-import { environment } from '../../../environments/environment';
+import { environment } from '@environments/environment';
 
 /**
  * Represents the payload of the response received when registering a new user in Firebase.

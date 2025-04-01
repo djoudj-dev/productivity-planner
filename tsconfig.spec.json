@@ -11,6 +11,6 @@
   "include": [
     "src/**/*.spec.ts",
     "src/**/*.d.ts",
-    "src/environments/environment.test.ts"
+    "src/environments/environment.ts"
   ]
 }

@@ -20,8 +20,8 @@ export const UserStore = signalStore(
     user: undefined,
   }),
   withComputed((store) => {
-    const isGoogleUser = computed(() =>
-      store.user()?.email.endsWith('@google.com'),
+    const isGoogleUser = computed(
+      () => !!store.user()?.email?.endsWith('@google.com'),
     );
 
     return { isGoogleUser };

@@ -4,6 +4,7 @@ import { NavbarSmartComponent } from './core/component/navbar/navbar.smart.compo
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet, NavbarSmartComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

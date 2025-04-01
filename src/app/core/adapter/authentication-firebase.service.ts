@@ -5,8 +5,8 @@ import {
   AuthenticationService,
   LoginResponse,
   RegisterResponse,
-} from './authentication.service';
-import { environment } from '../../environments/environment';
+} from '../port/authentication.service';
+import { environment } from '../../../environments/environment';
 
 /**
  * Represents the payload of the response received when registering a new user in Firebase.
@@ -66,26 +66,4 @@ export class AuthenticationFirebaseService implements AuthenticationService {
       })),
     );
   }
-
-  /*save(
-    email: string,
-    userId: string,
-    bearerToken: string,
-  ): Observable<unknown> {
-    const baseUrl = `https://firestore.googleapis.com/v1/projects/${environment.firebase.projectId}/databases/(default)/documents`;
-    const userFirestoreCollectionId = 'users';
-    const url = `${baseUrl}/${userFirestoreCollectionId}?key=${environment.firebase.apiKey}&documentId=${userId}`;
-    const body = {
-      fields: {
-        email: { stringValue: email },
-      },
-    };
-
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${bearerToken}`,
-    });
-    const options = { headers };
-
-    return this.#http.post(url, body, options);
-  }*/
 }

@@ -5,3 +5,4 @@ export interface User {
 }
 
 export type Visitor = Omit<User, 'id'> & { password: string };
+// test

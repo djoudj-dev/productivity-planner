@@ -91,7 +91,8 @@ const config: Config = {
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
-    '^../../../environments/environment$':
+    '^@environments/(.*)$': '<rootDir>/src/environments/$1',
+    '^.*environments/environment$':
       '<rootDir>/src/environments/environment.mock.ts',
   },
 

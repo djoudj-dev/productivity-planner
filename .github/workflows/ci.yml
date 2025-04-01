@@ -49,7 +49,7 @@ jobs:
 
       # Tests
       - name: Test
-        run: pnpm test
+        run: pnpm run test
 
       # Set environment variables
       - name: Create environment file

@@ -6,34 +6,50 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../port/authentication.service';
+import { User, Visitor } from '../entity/user.interface';
+import { UserService } from '../port/user.service';
 
 interface UserState {
-  username: string;
-  email: string;
+  user: User | undefined;
 }
 
 export const UserStore = signalStore(
   { providedIn: 'root' },
   withState<UserState>({
-    username: '',
-    email: '',
+    user: undefined,
   }),
   withComputed((store) => {
-    const isGoogleUser = computed(() => store.email().endsWith('@google.com'));
+    const isGoogleUser = computed(() =>
+      store.user()?.email.endsWith('@google.com'),
+    );
 
     return { isGoogleUser };
   }),
   withMethods(
-    (store, authenticationService = inject(AuthenticationService)) => ({
-      register: (username: string, email: string) => {
+    (
+      store,
+      authenticationService = inject(AuthenticationService),
+      userService = inject(UserService),
+    ) => ({
+      register(visitor: Visitor): void {
         authenticationService
-          .register(username, email)
+          .register(visitor.email, visitor.password)
           .subscribe((response) => {
-            patchState(store, {
-              email: response.userId,
+            const user: User = {
+              id: response.userId,
+              name: visitor.name,
+              email: visitor.email,
+            };
+
+            userService.create(user, response.jwtToken).subscribe({
+              next: () => {
+                patchState(store, { user });
+              },
             });
           });
+        // 👇 Updating state using the `patchState` function.
+        // patchState(store, (state) => ({ filter: { ...state.filter, query } }));
       },
     }),
   ),

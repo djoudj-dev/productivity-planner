@@ -4,6 +4,7 @@ import { HomeFeatureCardListDumbComponent } from './home-feature-card-list/home-
 
 @Component({
   selector: 'app-home',
+  standalone: true,
   imports: [HomeBannerDumbComponent, HomeFeatureCardListDumbComponent],
   templateUrl: './home.page.component.html',
   styleUrl: './home.page.component.scss',

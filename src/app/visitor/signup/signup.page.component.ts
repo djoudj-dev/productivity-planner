@@ -1,6 +1,8 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserStore } from '../../core/store/user.store';
+import { AuthenticationService } from '../../core/port/authentication.service';
+import { Visitor } from '../../core/entity/user.interface';
 
 @Component({
   selector: 'app-signup',
@@ -9,7 +11,8 @@ import { UserStore } from '../../core/store/user.store';
   styleUrl: './signup.page.component.scss',
 })
 export class SignupPageComponent {
-  readonly userStore = inject(UserStore);
+  readonly store = inject(UserStore);
+  readonly authenticationService = inject(AuthenticationService);
 
   readonly name = signal('');
   readonly email = signal('');
@@ -20,5 +23,12 @@ export class SignupPageComponent {
     () => this.password() === this.confirmPassword(),
   );
 
-  onSubmit() {}
+  onSubmit() {
+    const visitor: Visitor = {
+      name: this.name(),
+      email: this.email(),
+      password: this.password(),
+    };
+    this.store.register(visitor);
+  }
 }

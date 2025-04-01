@@ -1,23 +1,20 @@
-import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 
 import { HomeFeatureCardListDumbComponent } from './home-feature-card-list.dumb.component';
 
 describe('HomeFeatureCardListDumbComponent', () => {
   let component: HomeFeatureCardListDumbComponent;
   let fixture: ComponentFixture<HomeFeatureCardListDumbComponent>;
-  let debugElement: DebugElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HomeFeatureCardListDumbComponent],
-      schemas: [NO_ERRORS_SCHEMA] // Ignore unknown elements and properties
+      schemas: [NO_ERRORS_SCHEMA], // Ignore unknown elements and properties
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomeFeatureCardListDumbComponent);
     component = fixture.componentInstance;
-    debugElement = fixture.debugElement;
 
     // Skip the initial change detection to avoid errors with required inputs
     // We'll manually check the component instance

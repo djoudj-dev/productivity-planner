@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, NO_ERRORS_SCHEMA } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomePageComponent } from './home.page.component';
 
 describe('HomePageComponent', () => {
@@ -8,9 +8,7 @@ describe('HomePageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HomePageComponent],
-      schemas: [NO_ERRORS_SCHEMA] // Ignore unknown elements and properties
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(HomePageComponent);
     component = fixture.componentInstance;

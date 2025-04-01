@@ -36,7 +36,7 @@ export class AuthenticationFirebaseService implements AuthenticationService {
   readonly #http = inject(HttpClient);
 
   register(email: string, password: string): Observable<RegisterResponse> {
-    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebase.apiKey}`;
+    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseConfig.apiKey}`;
     const body = {
       email,
       password,
@@ -53,7 +53,7 @@ export class AuthenticationFirebaseService implements AuthenticationService {
   }
 
   login(email: string, password: string): Observable<LoginResponse> {
-    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebase.apiKey}`;
+    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseConfig.apiKey}`;
     const body = { email, password, returnSecureToken: true };
 
     return this.#http.post<FirebaseResponseSignin>(url, body).pipe(
@@ -72,9 +72,9 @@ export class AuthenticationFirebaseService implements AuthenticationService {
     userId: string,
     bearerToken: string,
   ): Observable<unknown> {
-    const baseUrl = `https://firestore.googleapis.com/v1/projects/${environment.firebase.projectId}/databases/(default)/documents`;
+    const baseUrl = `https://firestore.googleapis.com/v1/projects/${environment.firebaseConfig.projectId}/databases/(default)/documents`;
     const userFirestoreCollectionId = 'users';
-    const url = `${baseUrl}/${userFirestoreCollectionId}?key=${environment.firebase.apiKey}&documentId=${userId}`;
+    const url = `${baseUrl}/${userFirestoreCollectionId}?key=${environment.firebaseConfig.apiKey}&documentId=${userId}`;
     const body = {
       fields: {
         email: { stringValue: email },

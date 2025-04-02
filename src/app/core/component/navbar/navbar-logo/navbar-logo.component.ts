@@ -5,6 +5,5 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './navbar-logo.component.svg',
-  styleUrl: './navbar-logo.component.scss',
 })
 export class NavbarLogoComponent {}

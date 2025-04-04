@@ -1,0 +1,76 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <form #form="ngForm">
+        <!-- EMAIL -->
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            #emailField="ngModel"
+            data-testid="email"
+            type="email"
+            name="email"
+            class="form-control"
+            id="email"
+            autocomplete="email"
+            required
+            email
+            [class.is-invalid]="emailField.dirty && emailField.invalid"
+            [(ngModel)]="email"
+          />
+        </div>
+        @if (emailField.dirty) {
+          @if (emailField.hasError("required")) {
+            <div
+              class="form-text text-danger"
+              data-testid="error-email-required"
+            >
+              Email is required.
+            </div>
+          }
+          @if (emailField.hasError("email")) {
+            <div
+              class="form-text text-danger"
+              data-testid="error-email-pattern"
+            >
+              Email must be valid.
+            </div>
+          }
+        }
+
+        <!-- PASSWORD -->
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            #passwordField="ngModel"
+            data-testid="password"
+            type="password"
+            class="form-control"
+            id="password"
+            autocomplete="new-password"
+            name="password"
+            required
+            [class.is-invalid]="passwordField.dirty && passwordField.invalid"
+            [(ngModel)]="password"
+          />
+        </div>
+        @if (passwordField.dirty && passwordField.hasError("required")) {
+          <div
+            class="form-text text-danger"
+            data-testid="error-password-required"
+          >
+            Password is required.
+          </div>
+        }
+        <button
+          data-testid="submit-button"
+          type="submit"
+          class="btn btn-primary w-100 mt-3"
+          disabled
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

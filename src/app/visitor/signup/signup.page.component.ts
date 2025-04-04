@@ -6,7 +6,6 @@ import { Visitor } from '../../core/entity/user.interface';
 
 @Component({
   selector: 'app-signup',
-  standalone: true,
   imports: [FormsModule],
   templateUrl: './signup.page.component.html',
   styleUrl: './signup.page.component.scss',

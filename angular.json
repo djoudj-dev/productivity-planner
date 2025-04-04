@@ -114,6 +114,13 @@
       }
     }
   },
+  "schematics": {
+    "@schematics/angular": {
+      "component": {
+        "standalone": true
+      }
+    }
+  },
   "cli": {
     "schematicCollections": ["@angular-eslint/schematics"],
     "analytics": false

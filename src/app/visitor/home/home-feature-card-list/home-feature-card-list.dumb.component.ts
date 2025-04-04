@@ -3,7 +3,6 @@ import { FeatureCardList } from './home-feature-card-list.type';
 
 @Component({
   selector: 'app-home-feature-card-list',
-  standalone: true,
   imports: [],
   templateUrl: './home-feature-card-list.dumb.component.html',
   styleUrl: './home-feature-card-list.dumb.component.scss',

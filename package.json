@@ -24,7 +24,7 @@
     "@angular/platform-browser": "^18.2.13",
     "@angular/platform-browser-dynamic": "^18.2.13",
     "@angular/router": "^18.2.13",
-    "@ngrx/signals": "^17.2.0",
+    "@ngrx/signals": "^18.0.0",
     "bootstrap": "^5.3.0",
     "bootstrap-icons": "^1.11.3",
     "firebase": "^11.6.0",

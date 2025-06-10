@@ -1,8 +1,10 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { UserStore } from '../../core/store/user.store';
-import { AuthenticationService } from '../../core/port/authentication.service';
+import { Router } from '@angular/router';
 import { Visitor } from '../../core/entity/user.interface';
+import { AuthenticationService } from '../../core/port/authentication.service';
+import { UserStore } from '../../core/store/user.store';
+import { RegisterUserUseCaseService } from './register-user.use-case.service';
 
 @Component({
   selector: 'app-signup',
@@ -13,6 +15,8 @@ import { Visitor } from '../../core/entity/user.interface';
 export class SignupPageComponent {
   readonly store = inject(UserStore);
   readonly authenticationService = inject(AuthenticationService);
+  readonly #registerUserUseCase = inject(RegisterUserUseCaseService);
+  readonly #router = inject(Router);
 
   readonly name = signal('');
   readonly email = signal('');
@@ -29,6 +33,8 @@ export class SignupPageComponent {
       email: this.email(),
       password: this.password(),
     };
-    this.store.register(visitor);
+    this.#registerUserUseCase
+      .execute(visitor)
+      .then(() => this.#router.navigate(['/app/dashboard']));
   }
 }

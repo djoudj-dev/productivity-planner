@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { environment } from '@environments/environment';
 import { map, Observable } from 'rxjs';
 import {
   AuthenticationService,
   LoginResponse,
   RegisterResponse,
 } from '../port/authentication.service';
-import { environment } from '@environments/environment';
 
 /**
  * Represents the payload of the response received when registering a new user in Firebase.
@@ -42,6 +42,7 @@ export class AuthenticationFirebaseService implements AuthenticationService {
       password,
       returnSecureToken: true,
     };
+    console.log('Request body:', body);
     return this.#http.post<FirebaseResponseSignup>(url, body).pipe(
       map((response) => ({
         jwtToken: response.idToken,

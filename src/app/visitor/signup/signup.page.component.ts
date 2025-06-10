@@ -1,10 +1,9 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Visitor } from '../../core/entity/user.interface';
-import { AuthenticationService } from '../../core/port/authentication.service';
-import { UserStore } from '../../core/store/user.store';
-import { RegisterUserUseCaseService } from './register-user.use-case.service';
+import { Visitor } from '@app/core/entity/user.interface';
+import { UserStore } from '@app/core/store/user.store';
+import { EmailAlreadyTakenError } from './domain/email-already-taken.error';
+import { RegisterUserUseCase } from './domain/register-user.use-case';
 
 @Component({
   selector: 'app-signup',
@@ -14,17 +13,19 @@ import { RegisterUserUseCaseService } from './register-user.use-case.service';
 })
 export class SignupPageComponent {
   readonly store = inject(UserStore);
-  readonly authenticationService = inject(AuthenticationService);
-  readonly #registerUserUseCase = inject(RegisterUserUseCaseService);
-  readonly #router = inject(Router);
-
+  readonly #registerUserUseCase = inject(RegisterUserUseCase);
+  readonly isLoading = signal(false);
   readonly name = signal('');
   readonly email = signal('');
   readonly password = signal('');
   readonly confirmPassword = signal('');
-
   readonly isPasswordMatchValid = computed(
     () => this.password() === this.confirmPassword(),
+  );
+
+  readonly emailAlreadyTakenError = signal<EmailAlreadyTakenError | null>(null);
+  readonly isEmailAlreadyTaken = computed(
+    () => this.emailAlreadyTakenError()?.email === this.email(),
   );
 
   onSubmit() {
@@ -33,8 +34,19 @@ export class SignupPageComponent {
       email: this.email(),
       password: this.password(),
     };
+
     this.#registerUserUseCase
       .execute(visitor)
-      .then(() => this.#router.navigate(['/app/dashboard']));
+      .then(() => {
+        // La redirection est gérée dans le use case
+        console.log('Inscription réussie');
+      })
+      .catch((error: any) => {
+        if (error instanceof EmailAlreadyTakenError) {
+          this.emailAlreadyTakenError.set(error);
+        } else {
+          console.error("Erreur lors de l'inscription:", error);
+        }
+      });
   }
 }

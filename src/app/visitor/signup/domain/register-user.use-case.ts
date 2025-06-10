@@ -77,23 +77,31 @@ export class RegisterUserUseCase {
           case 'INVALID_EMAIL':
             return Promise.reject(new Error('Adresse email invalide'));
           case 'WEAK_PASSWORD : Password should be at least 6 characters':
-            return Promise.reject(new Error(
-              'Le mot de passe doit contenir au moins 6 caractères',
-            ));
+            return Promise.reject(
+              new Error('Le mot de passe doit contenir au moins 6 caractères'),
+            );
           case 'OPERATION_NOT_ALLOWED':
-            return Promise.reject(new Error(
-              "L'inscription par email/mot de passe n'est pas activée",
-            ));
+            return Promise.reject(
+              new Error(
+                "L'inscription par email/mot de passe n'est pas activée",
+              ),
+            );
           case 'Missing or insufficient permissions.':
-            return Promise.reject(new Error(
-              'Erreur de permissions. Veuillez réessayer dans quelques instants.',
-            ));
+            return Promise.reject(
+              new Error(
+                'Erreur de permissions. Veuillez réessayer dans quelques instants.',
+              ),
+            );
           default:
-            return Promise.reject(new Error(`Erreur d'inscription: ${firebaseError}`));
+            return Promise.reject(
+              new Error(`Erreur d'inscription: ${firebaseError}`),
+            );
         }
       }
 
-      return Promise.reject(new Error("Erreur inattendue lors de l'inscription"));
+      return Promise.reject(
+        new Error("Erreur inattendue lors de l'inscription"),
+      );
     }
   }
 }

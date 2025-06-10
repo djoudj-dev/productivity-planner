@@ -11,7 +11,7 @@ import { User } from '../entity/user.interface';
 interface UserState {
   user: User | undefined;
 }
-
+export type UserStore = InstanceType<typeof UserStore>;
 export const UserStore = signalStore(
   { providedIn: 'root' },
   withState<UserState>({
@@ -19,13 +19,13 @@ export const UserStore = signalStore(
   }),
   withComputed((store) => {
     const isGoogleUser = computed(
-      () => !!store.user()?.email?.endsWith('@google.com'),
+      () => !!store.user()?.email.endsWith('@google.com'),
     );
 
     return { isGoogleUser };
   }),
   withMethods((store) => ({
-    register(user: User): void {
+    load(user: User): void {
       patchState(store, { user });
     },
   })),

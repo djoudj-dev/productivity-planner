@@ -20,7 +20,7 @@
           />
         </div>
         @if (emailField.dirty) {
-          @if (emailField.hasError("required")) {
+          @if (emailField.hasError('required')) {
             <div
               class="form-text text-danger"
               data-testid="error-email-required"
@@ -28,7 +28,7 @@
               Email is required.
             </div>
           }
-          @if (emailField.hasError("email")) {
+          @if (emailField.hasError('email')) {
             <div
               class="form-text text-danger"
               data-testid="error-email-pattern"
@@ -54,7 +54,7 @@
             [(ngModel)]="password"
           />
         </div>
-        @if (passwordField.dirty && passwordField.hasError("required")) {
+        @if (passwordField.dirty && passwordField.hasError('required')) {
           <div
             class="form-text text-danger"
             data-testid="error-password-required"

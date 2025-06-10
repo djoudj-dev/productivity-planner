@@ -65,7 +65,7 @@ export class RegisterUserUseCase {
         errorDetails: error?.error,
       });
 
-      // Extraire le message d'erreur spécifique de Firebase
+      // Extraire le message d'erreur spécifique de Firebases
       if (error?.error?.error?.message) {
         const firebaseError = error.error.error.message;
         console.error("Message d'erreur Firebase:", firebaseError);

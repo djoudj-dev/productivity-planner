@@ -5,29 +5,26 @@ export const routes: Routes = [
   {
     path: '',
     title: 'Productivity Planner',
-    loadComponent() {
-      return import('./visitor/home/home.page.component').then(
-        (m) => m.HomePageComponent,
-      );
-    },
+    loadComponent: () =>
+      import('./visitor/home/home.page.component').then(
+        (component) => component.HomePageComponent,
+      ),
   },
   {
     path: 'login',
     title: 'Login',
-    loadComponent() {
-      return import('./visitor/login/login.page.component').then(
-        (m) => m.LoginPageComponent,
-      );
-    },
+    loadComponent: () =>
+      import('./visitor/login/login.page.component').then(
+        (component) => component.LoginPageComponent,
+      ),
   },
   {
     path: 'signup',
     title: 'Signup',
-    loadComponent() {
-      return import('./visitor/signup/signup.page.component').then(
-        (m) => m.SignupPageComponent,
-      );
-    },
+    loadComponent: () =>
+      import('./visitor/signup/signup.page.component').then(
+        (component) => component.SignupPageComponent,
+      ),
   },
   {
     path: 'app',

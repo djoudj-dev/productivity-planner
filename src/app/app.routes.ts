@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { ShellLayoutComponent } from './membership/core/shell/shell.layout.component';
 
 export const routes: Routes = [
   {
@@ -29,48 +30,12 @@ export const routes: Routes = [
     },
   },
   {
-    path: 'app/dashboard',
-    title: 'Dashboard',
-    loadComponent() {
-      return import('./membership/dashboard/dashboard.page.component').then(
-        (m) => m.DashboardPageComponent,
-      );
-    },
-  },
-  {
-    path: 'app/planning',
-    title: 'Planning',
-    loadComponent() {
-      return import('./membership/planning/planning.page.component').then(
-        (m) => m.PlanningPageComponent,
-      );
-    },
-  },
-  {
-    path: 'app/workday',
-    title: 'Workday',
-    loadComponent() {
-      return import('./membership/workday/workday.page.component').then(
-        (m) => m.WorkdayPageComponent,
-      );
-    },
-  },
-  {
-    path: 'app/profile',
-    title: 'Profile',
-    loadComponent() {
-      return import('./membership/profile/profile.page.component').then(
-        (m) => m.ProfilePageComponent,
-      );
-    },
-  },
-  {
-    path: 'app/settings',
-    title: 'Settings',
-    loadComponent() {
-      return import('./membership/settings/settings.page.component').then(
-        (m) => m.SettingsPageComponent,
-      );
-    },
+    path: 'app',
+    title: 'Productivity Planner',
+    component: ShellLayoutComponent,
+    loadChildren: () =>
+      import('./membership/membership.routes').then(
+        (routes) => routes.membershipRoutes,
+      ),
   },
 ];

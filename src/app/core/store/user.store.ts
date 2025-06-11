@@ -1,4 +1,4 @@
-import { computed, inject } from '@angular/core';
+import { computed } from '@angular/core';
 import {
   patchState,
   signalStore,
@@ -6,13 +6,12 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
-import { User, Visitor } from '../entity/user.interface';
-import { RegisterUserUseCaseService } from '../use-case/register-user.use-case.service';
+import { User } from '../entity/user.interface';
 
 interface UserState {
   user: User | undefined;
 }
-
+export type UserStore = InstanceType<typeof UserStore>;
 export const UserStore = signalStore(
   { providedIn: 'root' },
   withState<UserState>({
@@ -20,19 +19,14 @@ export const UserStore = signalStore(
   }),
   withComputed((store) => {
     const isGoogleUser = computed(
-      () => !!store.user()?.email?.endsWith('@google.com'),
+      () => !!store.user()?.email.endsWith('@google.com'),
     );
 
     return { isGoogleUser };
   }),
-  withMethods(
-    (store, registerUserUseCase = inject(RegisterUserUseCaseService)) => {
-      const register = (visitor: Visitor) => {
-        registerUserUseCase.execute(visitor).then((user) => {
-          patchState(store, { user });
-        });
-      };
-      return { register };
+  withMethods((store) => ({
+    load(user: User): void {
+      patchState(store, { user });
     },
-  ),
+  })),
 );

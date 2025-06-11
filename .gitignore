@@ -41,8 +41,8 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# Environment
-/src/environments
+# Jest cache
+/.jest-cache
 
 # Firebase cache
 /.firebase

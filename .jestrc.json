@@ -1,0 +1,33 @@
+{
+  "preset": "jest-preset-angular",
+  "setupFilesAfterEnv": ["<rootDir>/setup-jest.ts"],
+  "testEnvironment": "jsdom",
+  "clearMocks": true,
+  "coverageDirectory": "coverage",
+  "coverageProvider": "v8",
+  "cacheDirectory": "<rootDir>/.jest-cache",
+  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+  "moduleNameMapper": {
+    "^@app/(.*)$": "<rootDir>/src/app/$1",
+    "^@environments/(.*)$": "<rootDir>/src/environments/$1"
+  },
+  "rootDir": ".",
+  "testMatch": [
+    "<rootDir>/src/**/__tests__/**/*.(ts|js)",
+    "<rootDir>/src/**/*.(test|spec).(ts|js)"
+  ],
+  "transform": {
+    "^.+\\.(ts|js|mjs|html|svg)$": [
+      "jest-preset-angular",
+      {
+        "tsconfig": "<rootDir>/tsconfig.spec.json",
+        "stringifyContentPathRegex": "\\.(html|svg)$",
+        "isolatedModules": true
+      }
+    ]
+  },
+  "transformIgnorePatterns": [
+    "node_modules/(?!.*\\.mjs$)",
+    "node_modules/(?!(@angular|@ngrx|rxjs)/)"
+  ]
+}

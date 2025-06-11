@@ -1,20 +1,19 @@
-import { UserService } from '../port/user.service';
-import { inject, Injectable } from '@angular/core';
-import { ignoreElements, Observable } from 'rxjs';
-import { environment } from '@environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { environment } from '@environments/environment';
+import { map, Observable } from 'rxjs';
 import { User } from '../entity/user.interface';
+import { UserService } from '../port/user.service';
 
 @Injectable()
 export class UserFirebaseService implements UserService {
   readonly #http = inject(HttpClient);
-  readonly #FIRESTORE_URL = `https://firestore.googleapis.com/v1/projects/${environment.firebase.projectId}/databases/(default)/documents`;
+  readonly #FIRESTORE_URL = `https://firestore.googleapis.com/v1/projects/${environment.firebaseConfig.projectId}/databases/(default)/documents`;
   readonly #USER_COLLECTION_ID = 'users';
-  readonly #FIREBASE_API_KEY = environment.firebase.apiKey;
-  readonly #USER_COLLECTION_URL = `${this.#FIRESTORE_URL}/${this.#USER_COLLECTION_ID}?key=${this.#FIREBASE_API_KEY}&documentId=`;
+  readonly #FIREBASE_API_KEY = environment.firebaseConfig.apiKey;
 
   create(user: User, bearerToken: string): Observable<void> {
-    const url = `${this.#USER_COLLECTION_URL}${user.id}`;
+    const url = `${this.#FIRESTORE_URL}/${this.#USER_COLLECTION_ID}/${user.id}?key=${this.#FIREBASE_API_KEY}`;
     const body = {
       fields: {
         name: { stringValue: user.name },
@@ -25,6 +24,24 @@ export class UserFirebaseService implements UserService {
       Authorization: `Bearer ${bearerToken}`,
     });
     const options = { headers };
-    return this.#http.post(url, body, options).pipe(ignoreElements());
+    return this.#http.post(url, body, options).pipe(
+      map(() => void 0), // Transforme la réponse en void
+    );
+  }
+
+  fetch(userId: string, bearerToken: string): Observable<User> {
+    const url = `${this.#FIRESTORE_URL}/${this.#USER_COLLECTION_ID}/${userId}?key=${this.#FIREBASE_API_KEY}`;
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${bearerToken}`,
+    });
+    const options = { headers };
+
+    return this.#http.get(url, options).pipe(
+      map((response: any) => ({
+        id: userId,
+        name: response.fields.name.stringValue,
+        email: response.fields.email.stringValue,
+      })),
+    );
   }
 }

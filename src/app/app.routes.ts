@@ -1,52 +1,76 @@
 import { Routes } from '@angular/router';
-import { DashboardPageComponent } from './membership/dashboard/dashboard.page.component';
-import { PlanningPageComponent } from './membership/planning/planning.page.component';
-import { ProfilePageComponent } from './membership/profile/profile.page.component';
-import { SettingsPageComponent } from './membership/settings/settings.page.component';
-import { WorkdayPageComponent } from './membership/workday/workday.page.component';
-import { HomePageComponent } from './visitor/home/home.page.component';
-import { LoginPageComponent } from './visitor/login/login.page.component';
-import { SignupPageComponent } from './visitor/signup/signup.page.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: HomePageComponent,
     title: 'Productivity Planner',
+    loadComponent() {
+      return import('./visitor/home/home.page.component').then(
+        (m) => m.HomePageComponent,
+      );
+    },
   },
   {
     path: 'login',
-    component: LoginPageComponent,
     title: 'Login',
+    loadComponent() {
+      return import('./visitor/login/login.page.component').then(
+        (m) => m.LoginPageComponent,
+      );
+    },
   },
   {
     path: 'signup',
-    component: SignupPageComponent,
     title: 'Signup',
+    loadComponent() {
+      return import('./visitor/signup/signup.page.component').then(
+        (m) => m.SignupPageComponent,
+      );
+    },
   },
   {
     path: 'app/dashboard',
-    component: DashboardPageComponent,
     title: 'Dashboard',
+    loadComponent() {
+      return import('./membership/dashboard/dashboard.page.component').then(
+        (m) => m.DashboardPageComponent,
+      );
+    },
   },
   {
     path: 'app/planning',
-    component: PlanningPageComponent,
     title: 'Planning',
+    loadComponent() {
+      return import('./membership/planning/planning.page.component').then(
+        (m) => m.PlanningPageComponent,
+      );
+    },
   },
   {
     path: 'app/workday',
-    component: WorkdayPageComponent,
     title: 'Workday',
+    loadComponent() {
+      return import('./membership/workday/workday.page.component').then(
+        (m) => m.WorkdayPageComponent,
+      );
+    },
   },
   {
     path: 'app/profile',
-    component: ProfilePageComponent,
     title: 'Profile',
+    loadComponent() {
+      return import('./membership/profile/profile.page.component').then(
+        (m) => m.ProfilePageComponent,
+      );
+    },
   },
   {
     path: 'app/settings',
-    component: SettingsPageComponent,
     title: 'Settings',
+    loadComponent() {
+      return import('./membership/settings/settings.page.component').then(
+        (m) => m.SettingsPageComponent,
+      );
+    },
   },
 ];

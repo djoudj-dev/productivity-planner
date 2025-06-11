@@ -13,7 +13,7 @@ export class UserFirebaseService implements UserService {
   readonly #FIREBASE_API_KEY = environment.firebaseConfig.apiKey;
 
   create(user: User, bearerToken: string): Observable<void> {
-    const url = `${this.#FIRESTORE_URL}/${this.#USER_COLLECTION_ID}/${user.id}?key=${this.#FIREBASE_API_KEY}`;
+    const url = `${this.#FIRESTORE_URL}/${this.#USER_COLLECTION_ID}?documentId=${user.id}&key=${this.#FIREBASE_API_KEY}`;
     const body = {
       fields: {
         name: { stringValue: user.name },
